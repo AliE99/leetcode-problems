@@ -48,8 +48,8 @@ class Node:
 
         if root:
             result.append(root.data)
-            result += self.post_order_traverse(root.left)
-            result += self.post_order_traverse(root.right)
+            result += self.pre_order_traverse(root.left)
+            result += self.pre_order_traverse(root.right)
 
         return result
 
