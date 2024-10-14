@@ -1,25 +1,14 @@
-from typing import Deque
-
-
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        stack = Deque()
+        directory = []
         path = path.split("/")
         for p in path:
-            if p == ".." and stack:
-                stack.pop()
-                continue
-            elif p and p != ".." and p != ".":
-                stack.append(p)
+            if directory and p == "..":
+                directory.pop()
+            elif p not in ["", ".", ".."]:
+                directory.append(p)
 
-        print(stack)
-        result = ""
-        if not stack:
-            return "/"
-
-        while stack:
-            result = f"/{stack.pop()}{result}"
-        return result
+        return "/" + "/".join(directory)
 
 
 path = "/home/user/Documents/../Pictures"
