@@ -25,10 +25,7 @@ class Solution:
         max_depth_left = self.traverse(root.left, max_depth)
         max_depth_right = self.traverse(root.right, max_depth)
 
-        if max_depth_left > max_depth_right:
-            return max_depth_left
-
-        return max_depth_right
+        return max(max_depth_left, max_depth_right)
 
 
 def insert_level_order(arr, root, i, n):
