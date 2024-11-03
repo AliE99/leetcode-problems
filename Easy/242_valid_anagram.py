@@ -1,3 +1,6 @@
+from typing import Counter
+
+
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
@@ -31,3 +34,18 @@ s = "aacc"
 t = "ccac"
 
 print(Solution().isAnagram(s, t))
+
+
+class PythonicSolution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        counter_s = Counter(s)
+        counter_t = Counter(t)
+        if counter_s == counter_t:
+            return True
+
+        return False
+
+
+s = "anagram"
+t = "nagaram"
+print(PythonicSolution().isAnagram(s, t))
