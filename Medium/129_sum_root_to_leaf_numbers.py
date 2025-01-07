@@ -12,19 +12,14 @@ class TreeNode:
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
 
-        def calc_result(root: Optional[TreeNode], result: str):
-            if not root:
-                return ""
+        def calc(root, num: int):
+            if root == None:
+                return 0
 
-            result += f"{root.val}"
+            num = num * 10 + root.val
             if not root.left and not root.right:
-                final_result.append(int(result))
+                return num
 
-            calc_result(root.left, result)
-            calc_result(root.right, result)
+            return calc(root.left, num) + calc(root.right, num)
 
-            return result
-
-        final_result = []
-        calc_result(root, "")
-        return sum(final_result)
+        return calc(root, 0)
