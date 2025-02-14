@@ -52,6 +52,32 @@ class Solution:
         return head
 
 
+class BetterSolution:
+    def reverseBetween(
+        self, head: Optional[ListNode], left: int, right: int
+    ) -> Optional[ListNode]:
+        dummy: ListNode = ListNode(0, head)
+
+        # 1. reach Node at "left" position
+        leftPrev, cur = dummy, head
+        for _ in range(left - 1):
+            leftPrev, cur = cur, cur.next
+
+        # Now cur = "Left" and leftPrev = "node before left"
+        # 2. reverse from left to right
+        prev = None
+        for _ in range(right - left + 1):
+            next = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next
+
+        # 3. Update the pointers
+        leftPrev.next.next = cur
+        leftPrev.next = prev
+        return dummy.next
+
+
 head = ListNode(3)
 head.next = ListNode(5)
 # head.next.next = ListNode(3)
